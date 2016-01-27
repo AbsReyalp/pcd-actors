@@ -18,7 +18,7 @@ public class ActorRefImpl<T extends Message> implements ActorRef<T> {
     @Override
     public void send(Message message, ActorRef to) throws NoSuchActorException {
         if (((AbsActor) actorSystem.findActor(to)).isActorNotActive()) {
-            throw new NoSuchActorException();
+            throw new NoSuchActorException("Qua");
         } else {
             ((AbsActor) actorSystem.findActor(to)).AddNewMail(new MailImpl(this, message));
         }

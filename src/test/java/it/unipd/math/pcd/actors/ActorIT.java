@@ -37,6 +37,7 @@
  */
 package it.unipd.math.pcd.actors;
 
+import it.unipd.math.pcd.actors.exceptions.NoSuchActorException;
 import it.unipd.math.pcd.actors.utils.ActorSystemFactory;
 import it.unipd.math.pcd.actors.utils.actors.TrivialActor;
 import it.unipd.math.pcd.actors.utils.actors.counter.CounterActor;
@@ -92,10 +93,8 @@ public class ActorIT {
         PingPongActor pingActor = (PingPongActor) pingRef.getUnderlyingActor(system);
         PingPongActor pongActor = (PingPongActor) pongRef.getUnderlyingActor(system);
 
-        Assert.assertEquals("A ping actor has received a ping message", "Ping",
-                pingActor.getLastMessage().getMessage());
-        Assert.assertEquals("A pong actor has received back a pong message", "Pong",
-                pongActor.getLastMessage().getMessage());
+        Assert.assertEquals("A ping actor has received a ping message", "Ping", pingActor.getLastMessage().getMessage());
+        Assert.assertEquals("A pong actor has received back a pong message", "Pong", pongActor.getLastMessage().getMessage());
     }
 
     @Test
@@ -108,7 +107,6 @@ public class ActorIT {
 
         Thread.sleep(2000);
 
-        Assert.assertEquals("A counter that was incremented 1000 times should be equal to 1000",
-                200, ((CounterActor) counter.getUnderlyingActor(system)).getCounter());
+        Assert.assertEquals("A counter that was incremented 1000 times should be equal to 1000", 200, ((CounterActor) counter.getUnderlyingActor(system)).getCounter());
     }
 }

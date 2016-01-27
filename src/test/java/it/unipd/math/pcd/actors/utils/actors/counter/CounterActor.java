@@ -55,6 +55,8 @@ public class CounterActor extends AbsActor<CounterMessage> {
     public void receive(CounterMessage message) {
         if (message instanceof Increment) {
             counter++;
+            if ((counter%1000)==0)
+                System.out.println(counter);
         } else if (message instanceof Decrement) {
             counter--;
         } else if (message instanceof Get) {

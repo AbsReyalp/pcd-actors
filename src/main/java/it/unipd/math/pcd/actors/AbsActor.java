@@ -48,8 +48,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 /**
  * Defines common properties of all actors.
  *
- * @author Riccardo Cardin
- * @version 1.0
+ * @author Andrea Perini
+ * @version 2.0
  * @since 1.0
  */
 public abstract class AbsActor<T extends Message> implements Actor<T> {
@@ -74,11 +74,20 @@ public abstract class AbsActor<T extends Message> implements Actor<T> {
      */
     private BlockingQueue<Mail<T>> mailbox;
 
+
+
+    /**
+     *
+     * @return true if actor is not active
+     */
     public boolean isActorNotActive() {
         return ActorNotActive;
     }
 
-    public void setActorNotActive() {
+    /**
+     * set actor not active
+     */
+    public void setActorNotActive() throws NoSuchActorException{
         synchronized (this) {
             if (ActorNotActive) {
                 throw new NoSuchActorException();
@@ -108,6 +117,9 @@ public abstract class AbsActor<T extends Message> implements Actor<T> {
         threadActor.start();
     }
 
+    /**
+     * Add a new mail in mailbox
+     */
     public void AddNewMail(Mail<T> mail) throws NoSuchActorException {
         if (ActorNotActive){
             throw new NoSuchActorException();
@@ -120,6 +132,9 @@ public abstract class AbsActor<T extends Message> implements Actor<T> {
         }
     }
 
+    /**
+     * Simulate actor reading activity
+     */
     private class SimulateRead implements Runnable {
         @Override
         public void run() {

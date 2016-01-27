@@ -47,8 +47,8 @@ import java.util.Map;
 /**
  * A map-based implementation of the actor system.
  *
- * @author Riccardo Cardin
- * @version 1.0
+ * @author Andrea Perini
+ * @version 2.0
  * @since 1.0
  */
 public abstract class AbsActorSystem implements ActorSystem {
@@ -108,6 +108,7 @@ public abstract class AbsActorSystem implements ActorSystem {
     }
 
     public Actor<?> findActor(ActorRef<?> aRef) throws NoSuchActorException {
+
         Actor a = actors.get(aRef);
         if (a == null) {
             throw new NoSuchActorException();
